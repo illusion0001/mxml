@@ -998,13 +998,14 @@ mxml_fd_read(_mxml_fdbuf_t *buf)		/* I - File descriptor buffer */
   */
 
   while ((bytes = (int)read(buf->fd, buf->buffer, sizeof(buf->buffer))) < 0)
+#ifndef __PRX_BUILD__
 #ifdef EINTR
     if (errno != EAGAIN && errno != EINTR)
 #else
     if (errno != EAGAIN)
-#endif /* EINTR */
+#endif // EINTR
       return (-1);
-
+#endif
   if (bytes == 0)
     return (-1);
 

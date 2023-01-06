@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <PatchData Text="InfRotPower">
+    <PatchList>
+      <Line Offset="1" ValueOn="on1234" ValueOff="off1234"/>
+      <Line Offset="2" ValueOn="on1234" ValueOff="off1234"/>
+      <Line Offset="3" ValueOn="on1234" ValueOff="off1234"/>
+      <Line Offset="4" ValueOn="on1234" ValueOff="off1234"/>
+    </PatchList>
+  </PatchData>
+  <PatchData Text="InfShield">
+    <PatchList>
+      <Line Offset="21" ValueOn="on1234" ValueOff="off1234"/>
+    </PatchList>
+  </PatchData>
+  <PatchData Text="InfRotShape">
+    <PatchList>
+      <Line Offset="31" ValueOn="on1234" ValueOff="off1234"/>
+      <Line Offset="32" ValueOn="on1234" ValueOff="off1234"/>
+    </PatchList>
+  </PatchData>
+  <PatchData Text="InfCrystal">
+    <PatchList>
+      <Line Offset="41" ValueOn="on1234" ValueOff="off1234"/>
+      <Line Offset="42" ValueOn="on1234" ValueOff="off1234"/>
+      <Line Offset="43" ValueOn="on1234" ValueOff="off1234"/>
+    </PatchList>
+  </PatchData>
+</Patch>

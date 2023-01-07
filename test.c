@@ -40,7 +40,7 @@ int main() {
 #ifdef __PC__
 
     // puts("hello");
-    char *input_file = "text2.xml";
+    char *input_file = "text.xml";
     char *buffer = 0;
     u64 length = 0;
     FILE *f = fopen(input_file, "rb");

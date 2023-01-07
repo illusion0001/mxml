@@ -125,7 +125,7 @@ int main() {
                         printf("Address: 0x%lx ", addr_real);
                     }
                     printf("Value: \"%s\"\n", gameValue);
-                    printf("patch line: %lu\n", patch_lines);
+                    // printf("patch line: %lu\n", patch_lines);
 /*
                     if (gameType && addr_real) // type and address must be present
                     {

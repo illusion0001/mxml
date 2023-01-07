@@ -59,7 +59,7 @@ int main() {
 #endif
     if (buffer)
     {
-        mxml_node_t *node, *tree, *Cheatline_node, *Offset_node, *GameData, *IDNode = NULL;
+        mxml_node_t *node, *tree, *Patchlist_node, *Line_node, *GameData, *IDNode = NULL;
         tree = mxmlLoadString(NULL, buffer, MXML_NO_CALLBACK);
 
         if (!tree) {
@@ -106,19 +106,19 @@ int main() {
             printf("Author: \"%s\" ", AuthorData);
             printf("Name: \"%s\" ", NameData);
             printf("Note: \"%s\"\n", NoteData);
-            Cheatline_node = mxmlFindElement(node, node, "PatchList", NULL, NULL, MXML_DESCEND);
-            for (Offset_node = mxmlFindElement(node, node, "Line", NULL, NULL, MXML_DESCEND); Offset_node != NULL;
-                 Offset_node = mxmlFindElement(Offset_node, Cheatline_node, "Line", NULL, NULL, MXML_DESCEND))
+            Patchlist_node = mxmlFindElement(node, node, "PatchList", NULL, NULL, MXML_DESCEND);
+            for (Line_node = mxmlFindElement(node, node, "Line", NULL, NULL, MXML_DESCEND); Line_node != NULL;
+                 Line_node = mxmlFindElement(Line_node, Patchlist_node, "Line", NULL, NULL, MXML_DESCEND))
             {
-                printf("Offset: \"%s\" ", mxmlElementGetAttr(Offset_node, "Offset"));
-                printf("ValueOn: \"%s\" ", mxmlElementGetAttr(Offset_node, "ValueOn"));
-                printf("ValueOff: \"%s\"\n", mxmlElementGetAttr(Offset_node, "ValueOff"));
+                printf("Offset: \"%s\" ", mxmlElementGetAttr(Line_node, "Offset"));
+                printf("ValueOn: \"%s\" ", mxmlElementGetAttr(Line_node, "ValueOn"));
+                printf("ValueOff: \"%s\"\n", mxmlElementGetAttr(Line_node, "ValueOff"));
                 //printf("patch line: %u\n", idx);
                 idx++;
             }
         }
-        mxmlDelete(Offset_node);
-        mxmlDelete(Cheatline_node);
+        mxmlDelete(Line_node);
+        mxmlDelete(Patchlist_node);
         mxmlDelete(IDNode);
         mxmlDelete(GameData);
         mxmlDelete(node);

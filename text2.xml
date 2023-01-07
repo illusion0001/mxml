@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Patch Game="Test Game">
+  <!--
+  TitleID/ID for autogen, not used in plugins
+   -->
   <TitleID>
   <ID>TESTID1</ID>
   <ID>TESTID2</ID>
@@ -37,7 +40,11 @@
   <Metadata>
   <Name Text="Text4"/>
   <Author Text="Author4"/>
-  <!-- <Note Text="Note4"/> -->
+  <!--
+  <Name Text="Text4"/>
+  <Author Text="Author4"/>
+  <Note Text="Note4"/>
+  -->
     <PatchList>
       <Line Offset="41" ValueOn="on1234" ValueOff="off1234"/>
       <Line Offset="42" ValueOn="on1234" ValueOff="off1234"/>

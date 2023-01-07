@@ -97,8 +97,8 @@ int main() {
                 AppElfData = "(blank)";
             printf("Name: \"%s\" ", NameData);
             printf("Author: \"%s\" ", AuthorData);
-            printf("AppVer: \"%s\"", AppVerData);
-            printf("AppElf: \"%s\"", AppElfData);
+            printf("AppVer: \"%s\" ", AppVerData);
+            printf("AppElf: \"%s\" ", AppElfData);
             printf("Note: \"%s\"\n", NoteData);
 /*
             u64 hashout = patch_hash_calc(NameData, GameName, AppVerData, input_file, AppElfData);

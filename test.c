@@ -57,8 +57,9 @@ int main() {
     }
 
 #endif
-    if (buffer) {
-        mxml_node_t *node, *tree, *Cheatline_node, *Offset_node = NULL;
+    if (buffer)
+    {
+        mxml_node_t *node, *tree, *Cheatline_node, *Offset_node, *GameData, *IDNode = NULL;
         tree = mxmlLoadString(NULL, buffer, MXML_NO_CALLBACK);
 
         if (!tree) {
@@ -66,30 +67,60 @@ int main() {
             free(buffer);
             return 1;
         }
-        u32 idx = 1;
-        for (node = mxmlFindElement(tree, tree, "PatchData", NULL, NULL, MXML_DESCEND); node != NULL;
-             node = mxmlFindElement(node, tree, "PatchData", NULL, NULL, MXML_DESCEND))
+
+        GameData = mxmlFindElement(tree, tree, "Patch", NULL, NULL, MXML_DESCEND);
+        printf("Game: %s\n", mxmlElementGetAttr(GameData, "Game"));
+        u32 ID_idx = 1;
+        for (IDNode = mxmlFindElement(tree, tree, "ID", NULL, NULL, MXML_DESCEND); IDNode != NULL;
+             IDNode = mxmlFindElement(IDNode, tree, "ID", NULL, NULL, MXML_DESCEND))
         {
-            const char *TextData = mxmlElementGetAttr(node, "Text");
-            if (strcmp(TextData, "InfShield") == 0 || strcmp(TextData, "InfCrystal") == 0)
+            // const char* IDText = mxmlGetText(IDNode, NULL);
+            printf("Title IDs(%u): %s\n", ID_idx, mxmlGetText(IDNode, NULL));
+            ID_idx++;
+        }
+
+        u32 idx = 1;
+        for (node = mxmlFindElement(tree, tree, "Metadata", NULL, NULL, MXML_DESCEND); node != NULL;
+             node = mxmlFindElement(node, tree, "Metadata", NULL, NULL, MXML_DESCEND))
+        {
+            mxml_node_t *NameNode = mxmlFindElement(node, tree, "Name", NULL, NULL, MXML_DESCEND);
+            mxml_node_t *AuthorNode = mxmlFindElement(node, tree, "Author", NULL, NULL, MXML_DESCEND);
+            mxml_node_t *NoteNode = mxmlFindElement(node, tree, "Note", NULL, NULL, MXML_DESCEND);
+            const char *NameData = mxmlElementGetAttr(NameNode, "Text");
+            const char *AuthorData = mxmlElementGetAttr(AuthorNode, "Text");
+            const char *NoteData = mxmlElementGetAttr(NoteNode, "Text");
+            /*
+            const char *NameData = mxmlElementGetAttr(NameNode, "Text");
+            if (strcmp(NameData, "InfShield") == 0 || strcmp(NameData, "InfCrystal") == 0)
             {
-                printf("%s found\n", TextData);
+                printf("%s found\n", NameData);
                 continue;
             }
-            printf("Text: %s\n", TextData);
+            */
+            if (NameData == NULL)
+                NameData = "(blank)";
+            if (AuthorData == NULL)
+                AuthorData = "(blank)";
+            if (NoteData == NULL)
+                NoteData = "(blank)";
+            printf("Author: \"%s\" ", AuthorData);
+            printf("Name: \"%s\" ", NameData);
+            printf("Note: \"%s\"\n", NoteData);
             Cheatline_node = mxmlFindElement(node, node, "PatchList", NULL, NULL, MXML_DESCEND);
             for (Offset_node = mxmlFindElement(node, node, "Line", NULL, NULL, MXML_DESCEND); Offset_node != NULL;
                  Offset_node = mxmlFindElement(Offset_node, Cheatline_node, "Line", NULL, NULL, MXML_DESCEND))
             {
-                printf("%s ", mxmlElementGetAttr(Offset_node, "Offset"));
-                printf("%s ", mxmlElementGetAttr(Offset_node, "ValueOn"));
-                printf("%s\n", mxmlElementGetAttr(Offset_node, "ValueOff"));
-                printf("patch line: %u\n", idx);
+                printf("Offset: \"%s\" ", mxmlElementGetAttr(Offset_node, "Offset"));
+                printf("ValueOn: \"%s\" ", mxmlElementGetAttr(Offset_node, "ValueOn"));
+                printf("ValueOff: \"%s\"\n", mxmlElementGetAttr(Offset_node, "ValueOff"));
+                //printf("patch line: %u\n", idx);
                 idx++;
             }
         }
         mxmlDelete(Offset_node);
         mxmlDelete(Cheatline_node);
+        mxmlDelete(IDNode);
+        mxmlDelete(GameData);
         mxmlDelete(node);
         mxmlDelete(tree);
         free(buffer);

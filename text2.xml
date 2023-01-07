@@ -7,8 +7,8 @@
     <ID>CUSA00559</ID>
   </TitleID>
   <Metadata Name="Improved Loading Times"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.00"
             AppElf="eboot.bin">
   <PatchList>
@@ -20,8 +20,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Infected's Severed Head Crash Bug Fix"
-            Note="None"
             Author="illusion, ZEROx"
+            PatchVer="1.0"
             AppVer="01.00"
             AppElf="eboot.bin">
   <PatchList>
@@ -40,8 +40,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Enable Dev Menu"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.00"
             AppElf="eboot.bin">
   <PatchList>
@@ -116,8 +116,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Restore Full Rendering Menu"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.00"
             AppElf="eboot.bin">
   <PatchList>
@@ -126,8 +126,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Light Theme for Dev Menu"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.00"
             AppElf="eboot.bin">
   <PatchList>
@@ -135,8 +135,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Intro Skip"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.00"
             AppElf="eboot.bin">
   <PatchList>
@@ -144,8 +144,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Load Unpacked Files Exclusively"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.00"
             AppElf="eboot.bin">
   <PatchList>
@@ -154,8 +154,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Intro Skip"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.11"
             AppElf="eboot.bin">
   <PatchList>
@@ -163,8 +163,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Infected's Severed Head Crash Bug Fix"
-            Note="None"
             Author="illusion, ZEROx"
+            PatchVer="1.0"
             AppVer="01.11"
             AppElf="eboot.bin">
   <PatchList>
@@ -183,8 +183,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="University Nailbomb Softlock Fix"
-            Note="None"
             Author="illusion, ZEROx"
+            PatchVer="1.0"
             AppVer="01.11"
             AppElf="eboot.bin">
   <PatchList>
@@ -211,8 +211,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Enable Dev Menu"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.11"
             AppElf="eboot.bin">
   <PatchList>
@@ -220,8 +220,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Restore Full Rendering Menu"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.11"
             AppElf="eboot.bin">
   <PatchList>
@@ -230,8 +230,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Give Player Weapon Fix"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.11"
             AppElf="eboot.bin">
   <PatchList>
@@ -326,8 +326,8 @@
   </PatchList>
   </Metadata>
   <Metadata Name="Load Unpacked Files Exclusively"
-            Note="None"
             Author="illusion"
+            PatchVer="1.0"
             AppVer="01.11"
             AppElf="eboot.bin">
   <PatchList>

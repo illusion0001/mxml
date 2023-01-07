@@ -40,7 +40,7 @@ int main() {
 #ifdef __PC__
 
     // puts("hello");
-    char *input_file = "text.xml";
+    char *input_file = "text2.xml";
     char *buffer = 0;
     u64 length = 0;
     FILE *f = fopen(input_file, "rb");
@@ -62,7 +62,7 @@ int main() {
         tree = mxmlLoadString(NULL, buffer, MXML_NO_CALLBACK);
 
         if (!tree) {
-            printf("XML: could not parse XML: %s\n", buffer);
+            printf("XML: could not parse XML:\n%s\n", buffer);
             free(buffer);
             return 1;
         }
@@ -70,12 +70,19 @@ int main() {
         for (node = mxmlFindElement(tree, tree, "PatchData", NULL, NULL, MXML_DESCEND); node != NULL;
              node = mxmlFindElement(node, tree, "PatchData", NULL, NULL, MXML_DESCEND))
         {
+            const char *TextData = mxmlElementGetAttr(node, "Text");
+            if (strcmp(TextData, "InfShield") == 0 || strcmp(TextData, "InfCrystal") == 0)
+            {
+                printf("%s found\n", TextData);
+                continue;
+            }
+            printf("Text: %s\n", TextData);
             Cheatline_node = mxmlFindElement(node, node, "PatchList", NULL, NULL, MXML_DESCEND);
             for (Offset_node = mxmlFindElement(node, node, "Line", NULL, NULL, MXML_DESCEND); Offset_node != NULL;
                  Offset_node = mxmlFindElement(Offset_node, Cheatline_node, "Line", NULL, NULL, MXML_DESCEND))
             {
-                printf("%s\n", mxmlElementGetAttr(Offset_node, "Offset"));
-                printf("%s\n", mxmlElementGetAttr(Offset_node, "ValueOn"));
+                printf("%s ", mxmlElementGetAttr(Offset_node, "Offset"));
+                printf("%s ", mxmlElementGetAttr(Offset_node, "ValueOn"));
                 printf("%s\n", mxmlElementGetAttr(Offset_node, "ValueOff"));
                 printf("patch line: %u\n", idx);
                 idx++;

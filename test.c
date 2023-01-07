@@ -57,8 +57,7 @@ int main() {
     }
 
 #endif
-    if (buffer)
-    {
+    if (buffer) {
         mxml_node_t *node, *tree, *Patchlist_node, *Line_node, *GameData, *IDNode = NULL;
         tree = mxmlLoadString(NULL, buffer, MXML_NO_CALLBACK);
 
@@ -69,41 +68,73 @@ int main() {
         }
 
         GameData = mxmlFindElement(tree, tree, "Patch", NULL, NULL, MXML_DESCEND);
-        printf("Game: %s\n", mxmlElementGetAttr(GameData, "Game"));
+        const char *GameName = mxmlElementGetAttr(GameData, "Game");
+        printf("Game: %s\n", GameName);
         u32 ID_idx = 1;
+
         for (IDNode = mxmlFindElement(tree, tree, "ID", NULL, NULL, MXML_DESCEND); IDNode != NULL;
-             IDNode = mxmlFindElement(IDNode, tree, "ID", NULL, NULL, MXML_DESCEND))
-        {
-            // const char* IDText = mxmlGetText(IDNode, NULL);
+             IDNode = mxmlFindElement(IDNode, tree, "ID", NULL, NULL, MXML_DESCEND)) {
             printf("Title IDs(%u): %s\n", ID_idx, mxmlGetText(IDNode, NULL));
             ID_idx++;
         }
 
-        u32 idx = 1;
         for (node = mxmlFindElement(tree, tree, "Metadata", NULL, NULL, MXML_DESCEND); node != NULL;
-             node = mxmlFindElement(node, tree, "Metadata", NULL, NULL, MXML_DESCEND))
-        {
+             node = mxmlFindElement(node, tree, "Metadata", NULL, NULL, MXML_DESCEND)) {
             const char *NameData = mxmlElementGetAttr(node, "Name");
             const char *AuthorData = mxmlElementGetAttr(node, "Author");
             const char *NoteData = mxmlElementGetAttr(node, "Note");
+            const char *AppVerData = mxmlElementGetAttr(node, "AppVer");
+            const char *AppElfData = mxmlElementGetAttr(node, "AppElf");
             if (NameData == NULL)
                 NameData = "(blank)";
             if (AuthorData == NULL)
                 AuthorData = "(blank)";
             if (NoteData == NULL)
                 NoteData = "(blank)";
-            printf("Author: \"%s\" ", AuthorData);
+            if (AppVerData == NULL)
+                AppVerData = "(blank)";
+            if (AppElfData == NULL)
+                AppElfData = "(blank)";
             printf("Name: \"%s\" ", NameData);
+            printf("Author: \"%s\" ", AuthorData);
+            printf("AppVer: \"%s\"", AppVerData);
+            printf("AppElf: \"%s\"", AppElfData);
             printf("Note: \"%s\"\n", NoteData);
-            Patchlist_node = mxmlFindElement(node, node, "PatchList", NULL, NULL, MXML_DESCEND);
-            for (Line_node = mxmlFindElement(node, node, "Line", NULL, NULL, MXML_DESCEND); Line_node != NULL;
-                 Line_node = mxmlFindElement(Line_node, Patchlist_node, "Line", NULL, NULL, MXML_DESCEND))
-            {
-                printf("Offset: \"%s\" ", mxmlElementGetAttr(Line_node, "Offset"));
-                printf("ValueOn: \"%s\" ", mxmlElementGetAttr(Line_node, "ValueOn"));
-                printf("ValueOff: \"%s\"\n", mxmlElementGetAttr(Line_node, "ValueOff"));
-                //printf("patch line: %u\n", idx);
-                idx++;
+/*
+            u64 hashout = patch_hash_calc(NameData, GameName, AppVerData, input_file, AppElfData);
+            char settings_path[64];
+            snprintf(settings_path, sizeof(settings_path), "/data/GoldHEN/patches/settings/0x%016lx.txt", hashout);
+            final_printf("Settings path: %s\n", settings_path);
+            s32 res = Read_File(settings_path, &buffer2, &size2, 0);
+            if (res == 0x80020002) {
+                debug_printf("file %s not found, initializing false. ret: 0x%08x\n", settings_path, res);
+                unsigned char false_data[2] = {0x30, 0xa};
+                Write_File(settings_path, false_data, sizeof(false_data));
+            } else if (buffer2[0] == '1' && !strcmp(game_ver, AppVerData) && !strcmp(game_elf, AppElfData)) {
+*/
+                Patchlist_node = mxmlFindElement(node, node, "PatchList", NULL, NULL, MXML_DESCEND);
+                for (Line_node = mxmlFindElement(node, node, "Line", NULL, NULL, MXML_DESCEND); Line_node != NULL;
+                     Line_node = mxmlFindElement(Line_node, Patchlist_node, "Line", NULL, NULL, MXML_DESCEND)) {
+                    u64 addr_real = 0;
+                    const char *gameType = mxmlElementGetAttr(Line_node, "Type");
+                    const char *gameAddr = mxmlElementGetAttr(Line_node, "Address");
+                    const char *gameValue = mxmlElementGetAttr(Line_node, "Value");
+                    printf("Type: \"%s\" ", gameType);
+                    if (gameAddr) {
+                        addr_real = strtoull(gameAddr, NULL, 16);
+                        printf("Address: 0x%lx ", addr_real);
+                    }
+                    printf("Value: \"%s\"\n", gameValue);
+                    printf("patch line: %lu\n", patch_lines);
+/*
+                    if (gameType && addr_real) // type and address must be present
+                    {
+                        patch_data1(gameType, addr_real, gameValue);
+                        patch_lines++;
+                    }
+                    patch_items++;
+*/
+                }
             }
         }
         mxmlDelete(Line_node);

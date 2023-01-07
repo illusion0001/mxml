@@ -9,10 +9,9 @@
   <ID>TESTID3</ID>
   <ID>TESTID4</ID>
   </TitleID>
-  <Metadata>
-  <Name Text="Text1"/>
-  <Author Text="Author1"/>
-  <Note Text="Note1"/>
+  <Metadata Name="Text1"
+            Author="Author1"
+            Note="Note1">
     <PatchList>
       <Line Offset="1" ValueOn="on1234" ValueOff="off1234"/>
       <Line Offset="2" ValueOn="on1234" ValueOff="off1234"/>
@@ -20,31 +19,24 @@
       <Line Offset="4" ValueOn="on1234" ValueOff="off1234"/>
     </PatchList>
   </Metadata>
-  <Metadata>
-  <Name Text="Text2"/>
-  <Author Text="Author2"/>
-  <Note Text="Note2"/>
+  <Metadata Name="Text2"
+            Author="Author2"
+            Note="Note2">
     <PatchList>
       <Line Offset="21" ValueOn="on1234" ValueOff="off1234"/>
     </PatchList>
   </Metadata>
-  <Metadata>
-  <Name Text="Text3"/>
-  <Author Text="Author3"/>
-  <Note Text="Note3"/>
+  <Metadata Name="Text3"
+            Author="Author3"
+            Note="Note3">
     <PatchList>
       <Line Offset="31" ValueOn="on1234" ValueOff="off1234"/>
       <Line Offset="32" ValueOn="on1234" ValueOff="off1234"/>
     </PatchList>
   </Metadata>
-  <Metadata>
-  <Name Text="Text4"/>
-  <Author Text="Author4"/>
-  <!--
-  <Name Text="Text4"/>
-  <Author Text="Author4"/>
-  <Note Text="Note4"/>
-  -->
+  <Metadata Name="Text4"
+            Author="Author4"
+            Note="Note4">
     <PatchList>
       <Line Offset="41" ValueOn="on1234" ValueOff="off1234"/>
       <Line Offset="42" ValueOn="on1234" ValueOff="off1234"/>

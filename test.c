@@ -40,7 +40,7 @@ int main() {
 #ifdef __PC__
 
     // puts("hello");
-    char *input_file = "text.xml";
+    char *input_file = "text2.xml";
     char *buffer = 0;
     u64 length = 0;
     FILE *f = fopen(input_file, "rb");
@@ -83,20 +83,9 @@ int main() {
         for (node = mxmlFindElement(tree, tree, "Metadata", NULL, NULL, MXML_DESCEND); node != NULL;
              node = mxmlFindElement(node, tree, "Metadata", NULL, NULL, MXML_DESCEND))
         {
-            mxml_node_t *NameNode = mxmlFindElement(node, tree, "Name", NULL, NULL, MXML_DESCEND);
-            mxml_node_t *AuthorNode = mxmlFindElement(node, tree, "Author", NULL, NULL, MXML_DESCEND);
-            mxml_node_t *NoteNode = mxmlFindElement(node, tree, "Note", NULL, NULL, MXML_DESCEND);
-            const char *NameData = mxmlElementGetAttr(NameNode, "Text");
-            const char *AuthorData = mxmlElementGetAttr(AuthorNode, "Text");
-            const char *NoteData = mxmlElementGetAttr(NoteNode, "Text");
-            /*
-            const char *NameData = mxmlElementGetAttr(NameNode, "Text");
-            if (strcmp(NameData, "InfShield") == 0 || strcmp(NameData, "InfCrystal") == 0)
-            {
-                printf("%s found\n", NameData);
-                continue;
-            }
-            */
+            const char *NameData = mxmlElementGetAttr(node, "Name");
+            const char *AuthorData = mxmlElementGetAttr(node, "Author");
+            const char *NoteData = mxmlElementGetAttr(node, "Note");
             if (NameData == NULL)
                 NameData = "(blank)";
             if (AuthorData == NULL)

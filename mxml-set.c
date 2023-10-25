@@ -16,6 +16,7 @@
 #include "config.h"
 #include "mxml-private.h"
 
+#include <stdlib.h>
 
 /*
  * 'mxmlSetCDATA()' - Set the element name of a CDATA node.

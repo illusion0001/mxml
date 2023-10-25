@@ -120,7 +120,7 @@ mxmlEntityRemoveCallback(
       global->num_entity_cbs --;
 
       if (i < global->num_entity_cbs)
-        memmove(global->entity_cbs + i, global->entity_cbs + i + 1,
+        (void)memmove(global->entity_cbs + i, global->entity_cbs + i + 1,
 	        (global->num_entity_cbs - i) * sizeof(global->entity_cbs[0]));
 
       return;

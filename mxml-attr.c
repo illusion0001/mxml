@@ -73,7 +73,7 @@ mxmlElementDeleteAttr(mxml_node_t *node,/* I - Element */
 
       i --;
       if (i > 0)
-        memmove(attr, attr + 1, i * sizeof(_mxml_attr_t));
+        (void)memmove(attr, attr + 1, i * sizeof(_mxml_attr_t));
 
       node->value.element.num_attrs --;
 

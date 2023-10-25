@@ -18,6 +18,7 @@
 #endif /* !_WIN32 */
 #include "mxml-private.h"
 
+#include <stdlib.h>
 
 /*
  * Character encoding...

@@ -48,7 +48,7 @@ const char	*whitespace_cb(mxml_node_t *node, int where);
 /*
  * 'main()' - Main entry for test program.
  */
-
+#if 0
 int					/* O - Exit status */
 main(int  argc,				/* I - Number of command-line args */
      char *argv[])			/* I - Command-line args */
@@ -658,7 +658,7 @@ main(int  argc,				/* I - Number of command-line args */
   * Test SAX methods...
   */
 
-  memset(event_counts, 0, sizeof(event_counts));
+  (void)memset(event_counts, 0, sizeof(event_counts));
 
   if (argv[1][0] == '<')
     mxmlRelease(mxmlSAXLoadString(NULL, argv[1], type_cb, sax_cb, NULL));
@@ -723,6 +723,7 @@ main(int  argc,				/* I - Number of command-line args */
     }
   }
 
+
 #ifndef _WIN32
  /*
   * Debug hooks...
@@ -749,6 +750,7 @@ main(int  argc,				/* I - Number of command-line args */
   return (0);
 }
 
+#endif
 
 /*
  * 'sax_cb()' - Process nodes via SAX.

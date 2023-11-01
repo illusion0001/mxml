@@ -983,6 +983,7 @@ mxml_fd_putc(int  ch,			/* I - Character */
 static int				/* O - 0 on success, -1 on error */
 mxml_fd_read(_mxml_fdbuf_t *buf)		/* I - File descriptor buffer */
 {
+#if 0
   int	bytes;				/* Bytes read... */
 
 
@@ -998,14 +999,12 @@ mxml_fd_read(_mxml_fdbuf_t *buf)		/* I - File descriptor buffer */
   */
 
   while ((bytes = (int)read(buf->fd, buf->buffer, sizeof(buf->buffer))) < 0)
-#ifndef __PRX_BUILD__
 #ifdef EINTR
     if (errno != EAGAIN && errno != EINTR)
 #else
     if (errno != EAGAIN)
 #endif // EINTR
       return (-1);
-#endif
   if (bytes == 0)
     return (-1);
 
@@ -1016,6 +1015,7 @@ mxml_fd_read(_mxml_fdbuf_t *buf)		/* I - File descriptor buffer */
   buf->current = buf->buffer;
   buf->end     = buf->buffer + bytes;
 
+#endif
   return (0);
 }
 

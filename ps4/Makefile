@@ -8,10 +8,6 @@ ifeq ($(strip $(OO_PS4_TOOLCHAIN)),)
 $(error "Please set OO_PS4_TOOLCHAIN in your environment. export OO_PS4_TOOLCHAIN=<path>")
 endif
 
-ifeq ($(PRX_BUILD),1)
-EXTRAFLAGS = -D__PRX_BUILD__
-endif
-
 include $(OO_PS4_TOOLCHAIN)/build_rules.mk
 
 #---------------------------------------------------------------------------------

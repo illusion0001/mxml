@@ -16,8 +16,6 @@
 #include "config.h"
 #include "mxml-private.h"
 
-#include <stdlib.h>
-
 /*
  * Local functions...
  */

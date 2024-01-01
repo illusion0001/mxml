@@ -1003,7 +1003,7 @@ mxml_fd_read(_mxml_fdbuf_t *buf)		/* I - File descriptor buffer */
     if (errno != EAGAIN && errno != EINTR)
 #else
     if (errno != EAGAIN)
-#endif // EINTR
+#endif /* EINTR */
       return (-1);
 #endif
   if (bytes == 0)
